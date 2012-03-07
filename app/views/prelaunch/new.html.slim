@@ -1,0 +1,16 @@
+section#main
+  header
+    h1.logo Beardson.ly
+
+  section
+    - if flash[:notice]
+      = flash[:notice].html_safe
+
+    #question Want to know when we sprout our first hairs?
+    = form_for @prelaunch_subscriber, :url => prelaunch_path, :html => { :id => 'email' } do |f|
+      - if @prelaunch_subscriber.errors[:email]
+        .form-error
+          = @prelaunch_subscriber.errors[:email].first
+
+      = f.text_field :email, :value => "Enter your email address"
+      = f.submit 'Get Updated'
